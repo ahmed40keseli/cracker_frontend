@@ -27,9 +27,9 @@ const FormComponent = () => {
       });
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   console.log("personList", personList);
-  // }, [personList]);
+  useEffect(() => {
+    console.log("personList", personList);
+  }, [personList]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +37,7 @@ const FormComponent = () => {
       title,
       completed,
       description,
+      assignProfile,
       endDate: date,
       reminderDate: reminding,
     };

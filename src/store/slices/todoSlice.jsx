@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // API URL'ini belirtelim (bu kısmı gerçekte API'nizle değiştirebilirsiniz)
-const API_URL = "http://localhost:8081";
+const API_URL = "http://localhost:8080";
 
 // Async işlemleri tanımlayalım (bu kısım örnektir, gerçek API'ye göre değiştirebilirsiniz)
 // export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {

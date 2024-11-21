@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Async thunk ile veri gönderme işlemi
 export const sendData = createAsyncThunk(
   "form/sendData",
   async (formData, thunkAPI) => {
@@ -10,12 +9,33 @@ export const sendData = createAsyncThunk(
         "http://localhost:8081/createTask",
         formData
       );
-      return response.data;
+      console.log(response.data);
+      return response.data; // Yanıtın sadece veri kısmını gönderiyoruz
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      // Hata durumunda yalnızca gerekli kısmı döndürüyoruz
+      const errorMessage = error.response?.data?.message || "Bir hata oluştu";
+      return thunkAPI.rejectWithValue({ message: errorMessage });
     }
   }
 );
+
+// export const sendData = createAsyncThunk(
+//   "form/sendData",
+//   async (formData, thunkAPI) => {
+//     try {
+//       const response = await axios.post(
+//         "http://localhost:8081/createTask",
+//         formData
+//       );
+
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.response);
+//     }
+//   }
+// );
+
+console.log(sendData);
 
 const formSlice = createSlice({
   name: "form",

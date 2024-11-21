@@ -11,13 +11,33 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(loginUser({ email, password }));
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }));
+
+    dispatch(loginUser({ email, password }))
+      .unwrap()
+      .then((data) => {
+        // Token'ı sakla
+        sessionStorage.setItem("token", data.token); // Oturum bilgisi saklanır
+        alert("Login successful!");
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+      });
   };
 
+  // const handleLogout = () => {
+  //   dispatch(logout());
+  // };
+
   const handleLogout = () => {
-    dispatch(logout());
+    sessionStorage.removeItem("token"); // Token'ı sil
+    alert("Logged out!");
   };
 
   return (
