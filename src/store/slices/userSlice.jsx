@@ -1,15 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-// data ile veri alış-verişi yapar
 
 const API_URL = "http://localhost:8081";
-// http adresinin değişimi kolay olsun diye değere atadık
 
-// Selector to get the user state
 export const selectUser = (state) => state.user;
 
 export const loginUser = createAsyncThunk(
-  // createAsyncThunk ile veri alışverişini başlatan fonk
   "user/login",
   async (credentials, { rejectWithValue }) => {
     try {
