@@ -1,0 +1,21 @@
+/* Inputlar için temel stiller */
+.input-normal {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .input-normal:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .input-field hr {
+    margin-top: 5px;
+    border: 0;
+    border-top: 1px solid #ccc;
+  }
+  

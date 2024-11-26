@@ -10,7 +10,7 @@ export const sendData = createAsyncThunk(
         formData
       );
       console.log(response.data);
-      return response.data; // Yanıtın sadece veri kısmını gönderiyoruz
+      return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
       return thunkAPI.rejectWithValue({ message: errorMessage });

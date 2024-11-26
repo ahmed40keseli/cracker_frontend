@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerCompany } from "../store/slices/userSlice";
+import { registerCompany } from "../../store/slices/userSlice";
 import { Link } from "react-router-dom";
+import Input from "../input/InputNormal";
+import Button from "../button/ButtonNormal";
 
-const RegisterCompany = () => {
+const CregisterForm = () => {
   const dispatch = useDispatch();
   const { status, user, error } = useSelector((state) => state.user);
 
@@ -20,31 +22,30 @@ const RegisterCompany = () => {
       <h1>Şirket Kaydı</h1>
       {status === "loading" && <p>Yükleniyor...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <input
+      <Input
         type="text"
         value={companyName}
         onChange={(e) => setCompanyName(e.target.value)}
         placeholder="Şirket Adı"
-      />
+      ></Input>
       <hr />
-      <input
+      <Input
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="E-posta"
-      />
+      ></Input>
       <hr />
-      <input
+      <Input
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Şifre"
-      />
+      ></Input>
       <hr />
-      <button onClick={handleRegisterCompany}>Şirket Kaydı Yap</button>
+      <Button onClick={handleRegisterCompany}>Şirket Kaydı Yap</Button>
       {user && <p>Şirketiniz kaydedildi, {user.companyName}</p>}
 
-      {/* Sayfa yönlendirme linki */}
       <p>
         Zaten hesabınız var mı? <Link to="/">Giriş Yap</Link>
       </p>
@@ -55,4 +56,4 @@ const RegisterCompany = () => {
   );
 };
 
-export default RegisterCompany;
+export default CregisterForm;

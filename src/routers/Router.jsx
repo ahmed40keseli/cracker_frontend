@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Login from "../pages/login";
-import Register from "../pages/Register";
-import CompanyRegister from "../pages/companyRegister";
-import FormComponent from "../component/FormComponent";
+import Login from "../pages/loginPage";
+import Register from "../pages/RegisterPage";
+import CompanyRegister from "../pages/CregisterPage";
+import Task from "../pages/TaskPage";
 import PrivateRoute from "./PrivateRoute";
 
 const Routers = () => {
@@ -14,7 +14,7 @@ const Routers = () => {
       <Route path="/Cregister" element={<CompanyRegister />} />
 
       <Route element={<PrivateRoute />}>
-        <Route path="/createTask" element={<FormComponent />} />
+        <Route path="/createTask" element={<Task />} />
       </Route>
     </Routes>
   );
