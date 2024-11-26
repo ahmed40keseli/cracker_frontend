@@ -12,7 +12,7 @@ export const loginUser = createAsyncThunk(
       const response = await axios.post(`${API_URL}/login`, credentials);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -22,9 +22,9 @@ export const registerUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(`${API_URL}/register`, userData);
-      return response.data; // register başarılıysa veriyi döndür
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data); // hata varsa hatayı döndür
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -36,14 +36,18 @@ export const registerCompany = createAsyncThunk(
       const response = await axios.post(`${API_URL}/Cregister`, companyData);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
 
 const initialState = {
   user: null,
-  status: "idle",
+  loading: {
+    login: false,
+    register: false,
+    registerCompany: false,
+  },
   error: null,
 };
 

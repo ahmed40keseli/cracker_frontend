@@ -9,12 +9,10 @@ import PrivateRoute from "./PrivateRoute";
 const Routers = () => {
   return (
     <Routes>
-      {/* Public Routes */}
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/Cregister" element={<CompanyRegister />} />
 
-      {/* Private Routes */}
       <Route element={<PrivateRoute />}>
         <Route path="/createTask" element={<FormComponent />} />
       </Route>

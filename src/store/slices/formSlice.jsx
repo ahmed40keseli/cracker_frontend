@@ -12,7 +12,6 @@ export const sendData = createAsyncThunk(
       console.log(response.data);
       return response.data; // Yanıtın sadece veri kısmını gönderiyoruz
     } catch (error) {
-      // Hata durumunda yalnızca gerekli kısmı döndürüyoruz
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
       return thunkAPI.rejectWithValue({ message: errorMessage });
     }

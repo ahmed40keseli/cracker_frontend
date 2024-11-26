@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // useNavigate hook'u
+  const navigate = useNavigate();
   const { user, loading, error } = useSelector(selectUser);
 
   const [email, setEmail] = useState("");
@@ -17,9 +17,9 @@ function LoginForm() {
     dispatch(loginUser({ email, password }))
       .unwrap()
       .then((data) => {
-        sessionStorage.setItem("token", data.token); // Oturum bilgisi saklanır
+        // sessionStorage.setItem("token", data.token);
         alert("Login successful!");
-        navigate("/createTask"); // Başarılı giriş sonrası yönlendirme
+        navigate("/createTask");
       })
       .catch((error) => {
         console.error("Login error:", error);
@@ -27,7 +27,7 @@ function LoginForm() {
   };
 
   const handleLogout = () => {
-    sessionStorage.removeItem("token");
+    // sessionStorage.removeItem("token");
     navigate("/login"); // Login sayfasına yönlendirme
   };
 
