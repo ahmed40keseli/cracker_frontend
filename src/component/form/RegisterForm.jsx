@@ -1,7 +1,7 @@
 import React from "react";
-import InputNormal from "../input/InputNormal"; // `InputNormal` yerine `InputField` kullandık.
+import InputNormal from "../input/InputNormal";
 import StatusMessage from "../message/StatusMessage";
-import ButtonNormal from "../button/ButtonNormal"; // `Button` yerine `ButtonNormal`
+import ButtonNormal from "../button/ButtonNormal";
 
 const RegisterForm = ({
   name,

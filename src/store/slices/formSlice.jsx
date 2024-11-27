@@ -18,22 +18,6 @@ export const sendData = createAsyncThunk(
   }
 );
 
-// export const sendData = createAsyncThunk(
-//   "form/sendData",
-//   async (formData, thunkAPI) => {
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:8081/createTask",
-//         formData
-//       );
-
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response);
-//     }
-//   }
-// );
-
 console.log(sendData);
 
 const formSlice = createSlice({
