@@ -5,7 +5,7 @@ export const getData = createAsyncThunk(
   "tasks/getData",
   async (formGetData, thunkAPI) => {
     try {
-      // const token = sessionStorage.getItem('token');
+      const token = sessionStorage.getItem("token");
       const response = await axios.get("http://localhost:8081/getAuth", {
         headers: {
           Authorization: `Bearer ${token}`, // Token'ı gönder
