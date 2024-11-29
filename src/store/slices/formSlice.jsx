@@ -1,15 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import API from "../../api's/api";
 
 export const sendData = createAsyncThunk(
   "form/sendData",
   async (formData, thunkAPI) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8081/createTask",
-        formData
-      );
-      console.log(response.data);
+      const response = await API.post("/createTask", formData);
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
@@ -17,6 +14,23 @@ export const sendData = createAsyncThunk(
     }
   }
 );
+
+// export const sendData = createAsyncThunk(
+//   "form/sendData",
+//   async (formData, thunkAPI) => {
+//     try {
+//       const response = await axios.post(
+//         "http://localhost:8081/createTask",
+//         formData
+//       );
+//       console.log(response.data);
+//       return response.data;
+//     } catch (error) {
+//       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
+//       return thunkAPI.rejectWithValue({ message: errorMessage });
+//     }
+//   }
+// );
 
 console.log(sendData);
 

@@ -1,23 +1,38 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import API from "../../api's/api";
 
 export const getData = createAsyncThunk(
   "tasks/getData",
-  async (formGetData, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const token = sessionStorage.getItem("token");
-      const response = await axios.get("http://localhost:8081/getAuth", {
-        headers: {
-          Authorization: `Bearer ${token}`, // Token'ı gönder
-        },
-        params: formGetData || {},
-      });
+      const response = await API.get("/getAuth");
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Bir hata oluştu"
+      );
     }
   }
 );
+
+// export const getData = createAsyncThunk(
+//   "tasks/getData",
+//   async (formGetData, thunkAPI) => {
+//     try {
+//       const token = sessionStorage.getItem("token");
+//       const response = await axios.get("http://localhost:8081/getAuth", {
+//         headers: {
+//           Authorization: `Bearer ${token}`, // Token'ı gönder
+//         },
+//         params: formGetData || {},
+//       });
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.response.data);
+//     }
+//   }
+// );
 
 const formGetSlice = createSlice({
   name: "form",

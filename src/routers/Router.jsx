@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Login from "../pages/loginPage";
-import Register from "../pages/RegisterPage";
-import CompanyRegister from "../pages/CregisterPage";
-import Task from "../pages/TaskPage";
+import Login from "../pages/loginPage/loginPage";
+import Register from "../pages/registerPage/RegisterPage";
+import CompanyRegister from "../pages/cregisterPage/CregisterPage";
+import Task from "../pages/taskPage/TaskPage";
 import PrivateRoute from "./PrivateRoute";
 
 const Routers = () => {
@@ -13,7 +13,8 @@ const Routers = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/Cregister" element={<CompanyRegister />} />
 
-      <Route element={<PrivateRoute />}>
+      {/* <Route element={<PrivateRoute />}> */}
+      <Route>
         <Route path="/createTask" element={<Task />} />
       </Route>
     </Routes>

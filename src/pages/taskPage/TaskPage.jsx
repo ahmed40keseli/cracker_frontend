@@ -1,4 +1,4 @@
-import TaskForm from "../component/form/TaskForm";
+import TaskForm from "../../component/form/TaskForm";
 
 function TaskPage() {
   return (

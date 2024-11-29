@@ -1,9 +1,15 @@
+// *** bu sayfada şirket kayıt için kullanılır ekranda gözükecek şeyler için button input vs bu sayfaya aktarılır
+
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerCompany } from "../../store/slices/userSlice";
+// backend kısmı ile iletişime geçer axios ile verileri alır veya verir
 import { Link } from "react-router-dom";
+// farklı sayfalara aktarım için link içerir
 import Input from "../input/InputNormal";
+// defult input içe aktarı mı
 import Button from "../button/ButtonNormal";
+// defult button içe aktarı mı
 
 const CregisterForm = () => {
   const dispatch = useDispatch();
@@ -12,6 +18,7 @@ const CregisterForm = () => {
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // ilk başta bu değerlerin içi boş olarak alınır
 
   const handleRegisterCompany = () => {
     dispatch(registerCompany({ companyName, email, password }));
@@ -32,6 +39,7 @@ const CregisterForm = () => {
       <Input
         type="email"
         value={email}
+        // yukarıda tanımladığımız veriyi buraya tanımlar
         onChange={(e) => setEmail(e.target.value)}
         placeholder="E-posta"
       ></Input>
@@ -57,3 +65,4 @@ const CregisterForm = () => {
 };
 
 export default CregisterForm;
+// dışa aktarım için kullanılır
