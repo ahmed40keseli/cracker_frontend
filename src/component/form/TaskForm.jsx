@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sendData } from "../../store/slices/formSlice";
+import { sendData } from "../../store/slices/taskCreateSlice";
 import { getData } from "../../store/slices/takePersonalSlice";
+import Button from "../button/ButtonNormal";
+import Input from "../input/InputNormal";
 
 const TaskForm = () => {
   const [title, setTitle] = useState("");
@@ -14,22 +16,32 @@ const TaskForm = () => {
 
   const dispatch = useDispatch();
 
-  const status = useSelector((state) => state.form.status);
-  const error = useSelector((state) => state.form.error);
+  const status = useSelector((state) => state.formTaskSlice.status);
+  const error = useSelector((state) => state.formTaskSlice.error);
+
+  // useEffect(() => {
+  //   dispatch(getData())
+  //     .then((action) => {
+  //       setPersonList(action.payload.newArray || []);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     });
+  // }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getData())
-      .then((action) => {
+    const fetchData = async () => {
+      try {
+        const action = await dispatch(getData());
         setPersonList(action.payload.newArray || []);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error:", error);
-      });
+      }
+    };
+    fetchData();
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log("personList", personList);
-  }, [personList]);
+  useEffect(() => {}, [personList]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,55 +60,49 @@ const TaskForm = () => {
     <div>
       <h1>GÖREV OLUŞTURUN</h1>
       <form onSubmit={handleSubmit}>
-        <input
+        <Input
           type="text"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <hr />
-        <input
+        <Input
           type="text"
           placeholder="Görev Detayı"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <hr />
         <label>
           Görev Tamamlandı mı?
-          <input
+          <Input
             type="checkbox"
             checked={completed}
             onChange={(e) => setCompleted(e.target.checked)}
           />
         </label>
-        <hr />
-        <input
+        <Input
           type="text"
           placeholder="Görevli"
           value={assignProfile}
           onChange={(e) => setAssignProfile(e.target.value)}
         />
-        <hr />
         <label>
           Görev Tarihi:
-          <input
+          <Input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
         </label>
-        <hr />
         <label>
           Hatırlatma Tarihi:
-          <input
+          <Input
             type="date"
             value={reminding}
             onChange={(e) => setReminding(e.target.value)}
           />
         </label>
-        <hr />
-        <button type="submit">Gönder</button>
+        <Button type="submit">Gönder</Button>
       </form>
       {status === "loading" && <p>Yükleniyor...</p>}
       {status === "succeeded" && <p>Veri başarıyla gönderildi!</p>}
