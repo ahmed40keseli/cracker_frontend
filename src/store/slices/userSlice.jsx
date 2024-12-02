@@ -1,8 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import API from "../../api's/api";
-
-// const API_URL = "http://localhost:8081";
 
 export const selectUser = (state) => state.user;
 

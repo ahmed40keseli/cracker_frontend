@@ -18,13 +18,13 @@ function RegisterForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const sendUserData = {
+    const sendUserRegisterData = {
       email,
       username,
       password,
       referansNo,
     };
-    dispatch(registerUser(sendUserData));
+    dispatch(registerUser(sendUserRegisterData));
   };
 
   return (
