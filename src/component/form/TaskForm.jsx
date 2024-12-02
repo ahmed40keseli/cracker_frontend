@@ -19,16 +19,6 @@ const TaskForm = () => {
   const status = useSelector((state) => state.formTaskSlice.status);
   const error = useSelector((state) => state.formTaskSlice.error);
 
-  // useEffect(() => {
-  //   dispatch(getData())
-  //     .then((action) => {
-  //       setPersonList(action.payload.newArray || []);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // }, [dispatch]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {

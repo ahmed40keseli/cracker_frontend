@@ -1,109 +1,76 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser, selectUser, logout } from "../../store/slices/userSlice";
-import { useNavigate } from "react-router-dom";
-import Input from "../input/InputNormal";
-// defult input içe aktarı mı
-import Button from "../button/ButtonNormal";
-// defult button içe aktarı mı
+import Input from "../input/InputNormal"; // defult input içe aktarı mı
+import Button from "../button/ButtonNormal"; // defult button içe aktarı mı
 
 function RegisterForm() {
-  const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  const { user, error } = useSelector(selectUser);
-
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // ilk başta bu değerlerin içi boş olarak alınır
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState(""); // ilk başta bu değerlerin içi boş olarak alınır
+  const [referansNo, setReferansno] = useState("");
+  // const { user, error } = useSelector(selectUser);
+
+  const status = useSelector((state) => state.userSlice.status);
+  const error = useSelector((state) => state.userSlice.error);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const sendUserData = {
+      email,
+      username,
+      password,
+      referansNo,
+    };
+    dispatch(registerUser(sendUserData));
   };
 
   return (
     <div>
-      {user ? (
+      <form onSubmit={handleSubmit}>
         <div>
-          <h2>Register</h2>
+          <Input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          ></Input>
         </div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <Input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            ></Input>
-          </div>
-          <div>
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            ></Input>
-          </div>
-          <Button type="submit"></Button>
-          {error && <p style={{ color: "red" }}>{error}</p>}
-        </form>
-      )}
+        <div>
+          <Input
+            type="name"
+            placeholder="name"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          ></Input>
+        </div>
+        <div>
+          <Input
+            type="referansNo"
+            placeholder="referansNo"
+            value={referansNo}
+            onChange={(e) => setReferansno(e.target.value)}
+            required
+          ></Input>
+        </div>
+        <div>
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          ></Input>
+        </div>
+        <Button type="submit">Kayıt Ol</Button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+      </form>
     </div>
   );
 }
 
 export default RegisterForm;
-
-// import React from "react";
-// import InputNormal from "../input/InputNormal";
-// import StatusMessage from "../message/StatusMessage";
-// import ButtonNormal from "../button/ButtonNormal";
-
-// const RegisterForm = ({
-//   name,
-//   setName,
-//   email,
-//   setEmail,
-//   password,
-//   setPassword,
-//   referansNo,
-//   setreferanNo,
-//   handleRegister,
-//   status,
-//   error,
-// }) => {
-//   return (
-//     <div>
-//       <StatusMessage status={status} error={error} />
-//       <InputNormal
-//         type="text"
-//         value={name}
-//         onChange={(e) => setName(e.target.value)}
-//         placeholder="Ad"
-//       />
-//       <InputNormal
-//         type="email"
-//         value={email}
-//         onChange={(e) => setEmail(e.target.value)}
-//         placeholder="E-posta"
-//       />
-//       <InputNormal
-//         type="text"
-//         value={referansNo}
-//         onChange={(e) => setreferanNo(e.target.value)}
-//         placeholder="Şirket Referans Numarası"
-//       />
-//       <InputNormal
-//         type="password"
-//         value={password}
-//         onChange={(e) => setPassword(e.target.value)}
-//         placeholder="Şifre"
-//       />
-//       <ButtonNormal onClick={handleRegister}>Kayıt Ol</ButtonNormal>
-//     </div>
-//   );
-// };
-
-// export default RegisterForm;
