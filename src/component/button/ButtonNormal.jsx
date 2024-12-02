@@ -6,9 +6,7 @@ import "./button.css";
 
 function ButtonNormal({ onClick, children }) {
   // fonksiyon ismi açıklayıcı olmalı farklı sayfalarda içerim yapılacak
-  return <button onClick={onClick}>{children}</button>;
-  // children özeldir farklı dosyda kullanımı sağlar
+  return <button onClick={onClick}>{children}</button>; // children özeldir farklı dosyda kullanımı sağlar
 }
 
-export default ButtonNormal;
-// paylaşım için lazımdır
+export default ButtonNormal; // paylaşım için lazımdır

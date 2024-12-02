@@ -4,7 +4,7 @@ import Login from "../pages/loginPage/loginPage";
 import Register from "../pages/registerPage/RegisterPage";
 import CompanyRegister from "../pages/cregisterPage/CregisterPage";
 import Task from "../pages/taskPage/TaskPage";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 
 const Routers = () => {
   return (
