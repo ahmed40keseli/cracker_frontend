@@ -9,7 +9,7 @@ import Button from "../button/ButtonNormal";
 
 function RegisterForm() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { user, error } = useSelector(selectUser);
 
   const [email, setEmail] = useState("");
@@ -18,31 +18,6 @@ function RegisterForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(registerUser({ email, password }))
-      .unwrap()
-      .then((data) => {
-        localStorage.setItem("token", data.token); // Token'ı saklama
-        alert("Login successful!");
-        navigate("/createTask");
-
-        // Token süresi dolduğunda otomatik çıkış
-        const tokenExpiration = 3600 * 1000; // Örnek süre: 1 saat
-        setTimeout(() => {
-          localStorage.removeItem("token");
-          alert("Oturum süreniz doldu. Lütfen tekrar giriş yapın.");
-          navigate("/");
-        }, tokenExpiration);
-      })
-      .catch((error) => {
-        console.error("Login error:", error);
-      });
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token"); // Token'ı temizle
-    dispatch(logout()); // Redux state'i sıfırla
-    navigate("/");
   };
 
   return (
