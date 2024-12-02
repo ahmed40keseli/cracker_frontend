@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import API from "../../api's/api";
 
-const API_URL = "http://localhost:8081";
+// const API_URL = "http://localhost:8081";
 
 export const selectUser = (state) => state.user;
 
@@ -10,7 +10,7 @@ export const loginUser = createAsyncThunk(
   "user/login",
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/login`, credentials);
+      const response = await API.post("/login", credentials);
       sessionStorage.setItem("token", response.data.token);
       return response.data;
     } catch (error) {
@@ -23,7 +23,7 @@ export const registerUser = createAsyncThunk(
   "user/register",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/register`, userData);
+      const response = await API.post("/register", userData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
@@ -35,7 +35,7 @@ export const registerCompany = createAsyncThunk(
   "user/Cregister",
   async (companyData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}/Cregister`, companyData);
+      const response = await API.post("/Cregister", companyData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
