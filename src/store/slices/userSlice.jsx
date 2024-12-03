@@ -1,15 +1,28 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../api's/api";
 
-// Asenkron işlemler
-export const loginUser = createAsyncThunk(
+// export const loginUser = createAsyncThunk(
+//   "user/login",
+//   async (credentials, { rejectWithValue }) => {
+//     try {
+//       const response = await API.post("/login", credentials);
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.response?.data || error.message);
+//     }
+//   }
+// );
+
+export const loginSendData = createAsyncThunk(
   "user/login",
-  async (credentials, { rejectWithValue }) => {
+  async (credentials, thunkAPI) => {
     try {
       const response = await API.post("/login", credentials);
+      console.log(response.data);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      const errorMessage = error.response?.message || "bir hata oluştu";
+      return thunkAPI.rejectWithValue({ message: errorMessage });
     }
   }
 );
@@ -19,6 +32,8 @@ export const registerUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await API.post("/register", userData);
+      console.log(response.data);
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);
@@ -49,15 +64,15 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(loginUser.pending, (state) => {
+      .addCase(loginSendData.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(loginSendData.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.user = action.payload;
         state.error = null;
       })
-      .addCase(loginUser.rejected, (state, action) => {
+      .addCase(loginSendData.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       })

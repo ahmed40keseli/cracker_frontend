@@ -24,6 +24,8 @@ function RegisterForm() {
       password,
       referansNo,
     };
+    console.log(userData);
+
     dispatch(registerUser(userData));
   };
 
@@ -67,7 +69,7 @@ function RegisterForm() {
           ></Input>
         </div>
         <Button type="submit">Kayıt Ol</Button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p style={{ color: "red" }}>{JSON.stringify(error)}</p>}
       </form>
       {status === "loading" && <p>Yükleniyor...</p>}
       {status === "succeeded" && <p>Veri başarıyla gönderildi!</p>}

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../store/slices/userSlice";
+import { loginSendData } from "../../store/slices/userSlice";
 import Input from "../input/InputNormal"; // defult input içe aktarı mı
 import Button from "../button/ButtonNormal"; // defult button içe aktarı mı
 
 function LoginForm() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); // ilk başta bu değerlerin içi boş olarak alınır
+  const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 
@@ -20,7 +20,9 @@ function LoginForm() {
       email,
       password,
     };
-    dispatch(loginUser(sendUserLoginData));
+    console.log(sendUserLoginData);
+
+    dispatch(loginSendData(sendUserLoginData));
   };
 
   return (
@@ -46,7 +48,7 @@ function LoginForm() {
           ></Input>
         </div>
         <Button type="submit">Giriş Yap</Button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p style={{ color: "red" }}>{JSON.stringify(error)}</p>}
       </form>
       {status === "loading" && <p>Yükleniyor...</p>}
       {status === "succeeded" && <p>Veri başarıyla gönderildi!</p>}

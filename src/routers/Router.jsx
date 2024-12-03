@@ -9,7 +9,7 @@ import Task from "../pages/taskPage/TaskPage";
 const Routers = () => {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/Cregister" element={<CompanyRegister />} />
 

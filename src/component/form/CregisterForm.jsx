@@ -26,7 +26,7 @@ const CregisterForm = () => {
     <div>
       <h1>Şirket Kaydı</h1>
       {status === "loading" && <p>Yükleniyor...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{JSON.stringify(error)}</p>}
       <Input
         type="text"
         value={companyName}

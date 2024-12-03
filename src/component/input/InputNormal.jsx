@@ -8,8 +8,8 @@ const InputField = ({ type, value, onChange, placeholder }) => {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        className="normalInput"
       />
-      <hr />
     </div>
   );
 };

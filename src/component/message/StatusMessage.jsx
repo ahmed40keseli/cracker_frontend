@@ -6,7 +6,7 @@ const StatusMessage = ({ status, error }) => {
   }
 
   if (error) {
-    return <p style={{ color: "red" }}>{error}</p>;
+    return <p style={{ color: "red" }}>{JSON.stringify(error)}</p>;
   }
 
   return null;

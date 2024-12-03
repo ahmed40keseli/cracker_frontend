@@ -4,6 +4,8 @@ const API = axios.create({
   baseURL: "http://localhost:8081", // Backend URL
 });
 
+export default API;
+
 // Her isteğe Authorization header ekler
 // API.interceptors.request.use((config) => {
 //   const token = localStorage.getItem("token");
@@ -12,5 +14,3 @@ const API = axios.create({
 //   }
 //   return config;
 // });
-
-export default API;
