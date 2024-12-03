@@ -6,7 +6,6 @@ export const sendData = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await API.post("/createTask", formData);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";

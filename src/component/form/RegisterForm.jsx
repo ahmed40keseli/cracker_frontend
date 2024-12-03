@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser, selectUser, logout } from "../../store/slices/userSlice";
+import { registerUser } from "../../store/slices/userSlice";
 import Input from "../input/InputNormal"; // defult input içe aktarı mı
 import Button from "../button/ButtonNormal"; // defult button içe aktarı mı
 
@@ -11,20 +11,20 @@ function RegisterForm() {
   const [referansNo, setReferansno] = useState("");
   // const { user, error } = useSelector(selectUser);
 
+  const dispatch = useDispatch();
+
   const status = useSelector((state) => state.userSlice.status);
   const error = useSelector((state) => state.userSlice.error);
 
-  const dispatch = useDispatch();
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const sendUserRegisterData = {
+    const userData = {
       email,
       username,
       password,
       referansNo,
     };
-    dispatch(registerUser(sendUserRegisterData));
+    dispatch(registerUser(userData));
   };
 
   return (
@@ -69,6 +69,11 @@ function RegisterForm() {
         <Button type="submit">Kayıt Ol</Button>
         {error && <p style={{ color: "red" }}>{error}</p>}
       </form>
+      {status === "loading" && <p>Yükleniyor...</p>}
+      {status === "succeeded" && <p>Veri başarıyla gönderildi!</p>}
+      {status === "failed" && (
+        <p>Hata: {error?.message || "Bir hata oluştu."}</p>
+      )}
     </div>
   );
 }
