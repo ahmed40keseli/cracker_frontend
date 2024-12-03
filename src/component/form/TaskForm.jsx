@@ -50,49 +50,63 @@ const TaskForm = () => {
     <div>
       <h1>GÖREV OLUŞTURUN</h1>
       <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <Input
-          type="text"
-          placeholder="Görev Detayı"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <label>
-          Görev Tamamlandı mı?
+        <div>
           <Input
-            type="checkbox"
-            checked={completed}
-            onChange={(e) => setCompleted(e.target.checked)}
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
-        </label>
-        <Input
-          type="text"
-          placeholder="Görevli"
-          value={assignProfile}
-          onChange={(e) => setAssignProfile(e.target.value)}
-        />
-        <label>
-          Görev Tarihi:
+        </div>
+        <div>
           <Input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
+            type="text"
+            placeholder="Görev Detayı"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
-        </label>
-        <label>
-          Hatırlatma Tarihi:
+        </div>
+        <div>
+          <label>
+            Görev Tamamlandı mı?
+            <Input
+              type="checkbox"
+              checked={completed}
+              onChange={(e) => setCompleted(e.target.checked)}
+            />
+          </label>
+        </div>
+        <div>
           <Input
-            type="date"
-            value={reminding}
-            onChange={(e) => setReminding(e.target.value)}
+            type="text"
+            placeholder="Görevli"
+            value={assignProfile}
+            onChange={(e) => setAssignProfile(e.target.value)}
           />
-        </label>
-        <Button type="submit">Gönder</Button>
+        </div>
+        <div>
+          <label>
+            Görev Tarihi:
+            <Input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Hatırlatma Tarihi:
+            <Input
+              type="date"
+              value={reminding}
+              onChange={(e) => setReminding(e.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <Button type="submit">Gönder</Button>
+        </div>
       </form>
       {status === "loading" && <p>Yükleniyor...</p>}
       {status === "succeeded" && <p>Veri başarıyla gönderildi!</p>}
