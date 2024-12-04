@@ -5,7 +5,7 @@ const NavigationLinks = () => {
   return (
     <div>
       <p>
-        Hesabınız var mı? <Link to="/">Giriş Yap</Link>
+        Hesabınız var mı? <Link to="/login">Giriş Yap</Link>
       </p>
       <p>
         Şirket kaydı yapmak için <Link to="/Cregister">tıklayın</Link>
