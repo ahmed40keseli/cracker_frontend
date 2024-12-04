@@ -1,32 +1,31 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../store/slices/userSlice";
-import Input from "../input/InputNormal"; // defult input içe aktarı mı
-import Button from "../button/ButtonNormal"; // defult button içe aktarı mı
+import { registerSendData } from "../../store/slices/registerSlice";
+import Input from "../input/InputNormal";
+import Button from "../button/ButtonNormal";
 
 function RegisterForm() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState(""); // ilk başta bu değerlerin içi boş olarak alınır
+  const [user_password, setPassword] = useState("");
   const [referansNo, setReferansno] = useState("");
-  // const { user, error } = useSelector(selectUser);
 
   const dispatch = useDispatch();
 
-  const status = useSelector((state) => state.userSlice.status);
-  const error = useSelector((state) => state.userSlice.error);
+  const status = useSelector((state) => state.formRegisterSlice.status);
+  const error = useSelector((state) => state.formRegisterSlice.error);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const userData = {
       email,
       username,
-      password,
+      user_password,
       referansNo,
     };
     console.log(userData);
 
-    dispatch(registerUser(userData));
+    dispatch(registerSendData(userData));
   };
 
   return (
@@ -63,7 +62,7 @@ function RegisterForm() {
           <Input
             type="password"
             placeholder="Password"
-            value={password}
+            value={user_password}
             onChange={(e) => setPassword(e.target.value)}
             required
           ></Input>

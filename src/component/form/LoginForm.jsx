@@ -1,27 +1,26 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginSendData } from "../../store/slices/userSlice";
+import { loginSendData } from "../../store/slices/loginSlice";
 import Input from "../input/InputNormal"; // defult input içe aktarı mı
 import Button from "../button/ButtonNormal"; // defult button içe aktarı mı
 
 function LoginForm() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user_password, setPassword] = useState("");
 
   const dispatch = useDispatch();
 
   // const { user, loading, error } = useSelector(selectUser);
-  const status = useSelector((state) => state.userSlice.status);
-  const error = useSelector((state) => state.userSlice.error);
+  const status = useSelector((state) => state.formLoginSlice.status);
+  const error = useSelector((state) => state.formLoginSlice.error);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const sendUserLoginData = {
       email,
-      password,
+      user_password,
     };
-    console.log(sendUserLoginData);
-
+    console.log("sendUserLoginData", sendUserLoginData);
     dispatch(loginSendData(sendUserLoginData));
   };
 
@@ -42,7 +41,7 @@ function LoginForm() {
           <Input
             type="password"
             placeholder="Password"
-            value={password}
+            value={user_password}
             onChange={(e) => setPassword(e.target.value)}
             required
           ></Input>
@@ -51,7 +50,7 @@ function LoginForm() {
         {error && <p style={{ color: "red" }}>{JSON.stringify(error)}</p>}
       </form>
       {status === "loading" && <p>Yükleniyor...</p>}
-      {status === "succeeded" && <p>Veri başarıyla gönderildi!</p>}
+      {status === "succeeded" && <p>giriş başarı ile gerçekleşti</p>}
       {status === "failed" && (
         <p>Hata: {error?.message || "Bir hata oluştu."}</p>
       )}
