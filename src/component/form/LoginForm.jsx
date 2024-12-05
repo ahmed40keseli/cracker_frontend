@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSendData } from "../../store/slices/loginSlice";
-import Input from "../input/InputNormal"; // defult input içe aktarı mı
-import Button from "../button/ButtonNormal"; // defult button içe aktarı mı
+import Input from "../input/InputNormal";
+import Button from "../button/ButtonNormal";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
@@ -10,8 +10,6 @@ function LoginForm() {
   const [user_password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-
-  // const { user, loading, error } = useSelector(selectUser);
   const status = useSelector((state) => state.formLoginSlice.status);
   const error = useSelector((state) => state.formLoginSlice.error);
 
@@ -23,10 +21,8 @@ function LoginForm() {
       email,
       user_password,
     };
-    // console.log("sendUserLoginData", sendUserLoginData);
     dispatch(loginSendData(sendUserLoginData));
     navigate("/createTask");
-    console.log("Butona tıklandı!");
   };
 
   return (

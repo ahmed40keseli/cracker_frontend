@@ -1,19 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../api's/api";
 
-// export const sendData = createAsyncThunk(
-//   "form/sendData",
-//   async (formData, thunkAPI) => {
-//     try {
-//       const response = await API.post("/createTask", formData);
-//       return response.data;
-//     } catch (error) {
-//       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
-//       return thunkAPI.rejectWithValue({ message: errorMessage });
-//     }
-//   }
-// );
-
 export const sendData = createAsyncThunk(
   "form/sendData",
   async (formData, thunkAPI) => {

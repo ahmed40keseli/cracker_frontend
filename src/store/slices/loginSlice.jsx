@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../api's/api";
-// import { useNavigate } from "react-router-dom";
 
 export const loginSendData = createAsyncThunk(
   "form/loginSendData",
@@ -16,8 +15,6 @@ export const loginSendData = createAsyncThunk(
   }
 );
 
-// const navigate = useNavigate();
-
 const formLoginSlice = createSlice({
   name: "form",
   initialState: {
@@ -30,18 +27,17 @@ const formLoginSlice = createSlice({
       .addCase(loginSendData.pending, (state) => {
         state.status = "loading";
       })
-      // .addCase(loginSendData.fulfilled, (state) => {
-      //   state.status = "succeeded";
-      //   state.error = null;
-      // })
-      .addCase(loginSendData.fulfilled, (state, action) => {
+      .addCase(loginSendData.fulfilled, (state) => {
         state.status = "succeeded";
         state.error = null;
-        // Token'ı sessionStorage'a kaydet
-        if (action.payload?.token) {
-          sessionStorage.setItem("token", action.payload.token);
-        }
       })
+      // .addCase(loginSendData.fulfilled, (state, action) => {
+      //   state.status = "succeeded";
+      //   state.error = null;
+      //   if (action.payload?.token) {
+      //     sessionStorage.setItem("token", action.payload.token);
+      //   }
+      // })
       .addCase(loginSendData.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
