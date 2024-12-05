@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginSendData } from "../../store/slices/loginSlice";
 import Input from "../input/InputNormal"; // defult input içe aktarı mı
 import Button from "../button/ButtonNormal"; // defult button içe aktarı mı
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -14,14 +15,18 @@ function LoginForm() {
   const status = useSelector((state) => state.formLoginSlice.status);
   const error = useSelector((state) => state.formLoginSlice.error);
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const sendUserLoginData = {
       email,
       user_password,
     };
-    console.log("sendUserLoginData", sendUserLoginData);
+    // console.log("sendUserLoginData", sendUserLoginData);
     dispatch(loginSendData(sendUserLoginData));
+    navigate("/createTask");
+    console.log("Butona tıklandı!");
   };
 
   return (

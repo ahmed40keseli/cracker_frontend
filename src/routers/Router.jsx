@@ -4,7 +4,7 @@ import Login from "../pages/loginPage/loginPage";
 import Register from "../pages/registerPage/RegisterPage";
 import CompanyRegister from "../pages/cregisterPage/CregisterPage";
 import Task from "../pages/taskPage/TaskPage";
-// import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 
 const Routers = () => {
   return (
@@ -13,10 +13,9 @@ const Routers = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/Cregister" element={<CompanyRegister />} />
 
-      {/* <Route element={<PrivateRoute />}> */}
-      <Route>
-        <Route path="/createTask" element={<Task />} />
-      </Route>
+      {/* <Route> */}
+      {/* <Route path="/createTask" element={<Task />} /> */}
+      <Route path="/createTask" element={<PrivateRoute element={<Task />} />} />
     </Routes>
   );
 };
