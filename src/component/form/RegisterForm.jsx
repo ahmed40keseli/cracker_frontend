@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerSendData } from "../../store/slices/registerSlice";
 import Input from "../input/InputNormal";
 import Button from "../button/ButtonNormal";
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function RegisterForm() {
   const [email, setEmail] = useState("");
@@ -11,9 +13,10 @@ function RegisterForm() {
   const [referansNo, setReferansno] = useState("");
 
   const dispatch = useDispatch();
-
   const status = useSelector((state) => state.formRegisterSlice.status);
   const error = useSelector((state) => state.formRegisterSlice.error);
+
+  // const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,8 +31,15 @@ function RegisterForm() {
     dispatch(registerSendData(userData));
   };
 
+  // useEffect(() => {
+  //   if (status === "succeeded") {
+  //     navigate("/login");
+  //   }
+  // }, [status, navigate]);
+
   return (
     <div>
+      <h1>Kayıt Ekranı</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <Input
@@ -69,6 +79,12 @@ function RegisterForm() {
         </div>
         <Button type="submit">Kayıt Ol</Button>
         {error && <p style={{ color: "red" }}>{JSON.stringify(error)}</p>}
+        <h2>
+          Kayıt Olduysanız <Link to="/login">Giriş Yap</Link>
+        </h2>
+        <h3>
+          Şirket Kaydı için <Link to="/Cregister">tıklayın</Link>
+        </h3>
       </form>
       {status === "loading" && <p>Yükleniyor...</p>}
       {status === "succeeded" && <p>Veri başarıyla gönderildi!</p>}
