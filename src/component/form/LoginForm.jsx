@@ -15,10 +15,6 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  // const handleSubmit2 = () => {
-  //   navigate("/createTask");
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const sendUserLoginData = {
@@ -26,10 +22,7 @@ function LoginForm() {
       user_password,
     };
     console.log("sendUserLoginData", sendUserLoginData);
-    // dispatch(loginSendData(sendUserLoginData));
-    dispatch(loginSendData(sendUserLoginData)).then(() => {
-      // navigate("/createTask");
-    });
+    dispatch(loginSendData(sendUserLoginData)).then(() => {});
   };
 
   useEffect(() => {
