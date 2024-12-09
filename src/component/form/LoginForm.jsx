@@ -15,6 +15,10 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
+  const handleSubmit2 = () => {
+    navigate("/createTask");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const sendUserLoginData = {
@@ -47,7 +51,9 @@ function LoginForm() {
             required
           ></Input>
         </div>
-        <Button type="submit">Giriş Yap</Button>
+        <Button type="submit" onClick={handleSubmit2}>
+          Giriş Yap
+        </Button>
         {error && <p style={{ color: "red" }}>{JSON.stringify(error)}</p>}
       </form>
       {status === "loading" && <p>Yükleniyor...</p>}
