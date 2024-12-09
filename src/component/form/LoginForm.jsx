@@ -15,9 +15,9 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  const handleSubmit2 = () => {
-    navigate("/createTask");
-  };
+  // const handleSubmit2 = () => {
+  //   navigate("/createTask");
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,9 +25,18 @@ function LoginForm() {
       email,
       user_password,
     };
-    dispatch(loginSendData(sendUserLoginData));
-    navigate("/createTask");
+    console.log("sendUserLoginData", sendUserLoginData);
+    // dispatch(loginSendData(sendUserLoginData));
+    dispatch(loginSendData(sendUserLoginData)).then(() => {
+      // navigate("/createTask");
+    });
   };
+
+  useEffect(() => {
+    if (status === "succeeded") {
+      navigate("/createTask");
+    }
+  }, [status, navigate]);
 
   return (
     <div>
@@ -51,9 +60,7 @@ function LoginForm() {
             required
           ></Input>
         </div>
-        <Button type="submit" onClick={handleSubmit2}>
-          Giriş Yap
-        </Button>
+        <Button type="submit">Giriş Yap</Button>
         {error && <p style={{ color: "red" }}>{JSON.stringify(error)}</p>}
       </form>
       {status === "loading" && <p>Yükleniyor...</p>}

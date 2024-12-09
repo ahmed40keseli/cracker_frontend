@@ -13,8 +13,8 @@ const Routers = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/Cregister" element={<CompanyRegister />} />
 
-      <Route path="/createTask" element={<Task />} />
-      {/* <Route path="/createTask" element={<PrivateRoute element={<Task />} />} /> */}
+      {/* <Route path="/createTask" element={<Task />} /> */}
+      <Route path="/createTask" element={<PrivateRoute element={<Task />} />} />
     </Routes>
   );
 };
