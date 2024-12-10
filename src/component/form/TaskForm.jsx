@@ -19,6 +19,8 @@ const TaskForm = () => {
   const status = useSelector((state) => state.formTaskSlice.status);
   const error = useSelector((state) => state.formTaskSlice.error);
 
+  const sessionDegerReferansno = sessionStorage.getItem("referansNo");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,7 +33,12 @@ const TaskForm = () => {
     fetchData();
   }, [dispatch]);
 
-  useEffect(() => {}, [personList]);
+  const filteredPersonList = personList.filter(
+    // (person) => person.referansNo === sessionDegerReferansno
+    (person) => String(person.referansNo) === String(sessionDegerReferansno)
+  );
+  console.log("Filtered Person List:", filteredPersonList);
+  console.log("Person List:", personList);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -116,7 +123,7 @@ const TaskForm = () => {
 
       <h2>Person List</h2>
       <ul>
-        {personList.map((person, index) => (
+        {filteredPersonList.map((person, index) => (
           <li key={index}>
             <strong>{person.username}</strong> - Referans No:{" "}
             {person.referansNo}
