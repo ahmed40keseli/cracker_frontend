@@ -6,6 +6,11 @@ export const cregistersendData = createAsyncThunk(
   async (cregisterData, thunkAPI) => {
     try {
       const response = await API.post("/Cregister", cregisterData);
+      const sessionDegerCregister = sessionStorage.setItem(
+        "token",
+        response.data.token
+      );
+      console.log(sessionDegerCregister);
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";

@@ -6,6 +6,11 @@ export const registerSendData = createAsyncThunk(
   async (registerData, thunkAPI) => {
     try {
       const response = await API.post("/register", registerData);
+      const sessionDegerRegister = sessionStorage.setItem(
+        "token",
+        response.data.token
+      );
+      console.log(sessionDegerRegister);
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";

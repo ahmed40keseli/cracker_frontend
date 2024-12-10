@@ -8,8 +8,11 @@ export const loginSendData = createAsyncThunk(
       const response = await API.post("/login", loginData);
       console.log(response.data);
 
-      const sessiondeger = sessionStorage.setItem("token", response.data.token);
-      console.log(sessiondeger);
+      const sessionDegerLogin = sessionStorage.setItem(
+        "token",
+        response.data.token
+      );
+      console.log(sessionDegerLogin);
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
