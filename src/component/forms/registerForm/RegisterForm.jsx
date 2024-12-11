@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerSendData } from "../../store/slices/registerSlice";
-import Input from "../input/InputNormal";
-import Button from "../button/ButtonNormal";
+import { registerSendData } from "../../../store/slices/registerSlice";
+import Input from "../../input/InputNormal";
+import Button from "../../button/ButtonNormal";
 import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 

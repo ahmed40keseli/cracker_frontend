@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cregistersendData } from "../../store/slices/cregisterSlice"; // backend kısmı ile iletişime geçer axios ile verileri alır veya verir
+import { cregistersendData } from "../../../store/slices/cregisterSlice"; // backend kısmı ile iletişime geçer axios ile verileri alır veya verir
 import { Link } from "react-router-dom"; // farklı sayfalara aktarım için link içerir
-import Input from "../input/InputNormal"; // defult input içe aktarı mı
-import Button from "../button/ButtonNormal"; // defult button içe aktarı mı
+import Input from "../../input/InputNormal"; // defult input içe aktarı mı
+import Button from "../../button/ButtonNormal"; // defult button içe aktarı mı
 
 const CregisterForm = () => {
   const [referansNo, setreferansNo] = useState("");

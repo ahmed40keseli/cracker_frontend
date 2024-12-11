@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sendData } from "../../store/slices/taskCreateSlice";
-import { getData } from "../../store/slices/takePersonalSlice";
-import Button from "../button/ButtonNormal";
-import Input from "../input/InputNormal";
+import { sendData } from "../../../store/slices/taskCreateSlice";
+import { getData } from "../../../store/slices/takePersonalSlice";
+import Button from "../../button/ButtonNormal";
+import Input from "../../input/InputNormal";
 
 const TaskForm = () => {
   const [title, setTitle] = useState("");

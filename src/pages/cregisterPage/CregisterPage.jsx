@@ -1,4 +1,4 @@
-import Cregisterform from "../../component/form/CregisterForm";
+import Cregisterform from "../../component/forms/cRegisterForm/CregisterForm";
 
 function CregisterPage() {
   return (
