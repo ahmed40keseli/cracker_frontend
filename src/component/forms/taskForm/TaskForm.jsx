@@ -85,13 +85,31 @@ const TaskForm = () => {
           </label>
         </div>
         <div>
+          <label>
+            Görevli Seçin:
+            <select
+              value={assignProfile}
+              onChange={(e) => setAssignProfile(e.target.value)}
+            >
+              <option value="" disabled>
+                Görevli seçin
+              </option>
+              {filteredPersonList.map((person) => (
+                <option key={person.referansNo} value={person.username}>
+                  {person.username} - {person.referansNo}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        {/* <div>
           <InputNormal
             type="text"
             placeholder="Görevli"
             value={assignProfile}
             onChange={(e) => setAssignProfile(e.target.value)}
           />
-        </div>
+        </div> */}
         <div>
           <label>
             Görev Tarihi:
@@ -122,7 +140,7 @@ const TaskForm = () => {
         <p>Hata: {error?.message || "Bir hata oluştu."}</p>
       )}
 
-      <h2>Person List</h2>
+      {/* <h2>Person List</h2>
       <ul>
         {filteredPersonList.map((person, index) => (
           <li key={index}>
@@ -130,7 +148,7 @@ const TaskForm = () => {
             {person.referansNo}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
