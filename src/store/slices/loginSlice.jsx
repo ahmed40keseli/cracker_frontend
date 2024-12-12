@@ -10,9 +10,10 @@ export const loginSendData = createAsyncThunk(
 
       sessionStorage.setItem("token", response.data.token);
       sessionStorage.setItem("referansNo", response.data.user.referansNo);
+      sessionStorage.setItem("roleId", response.data.user.roleId);
       const sessionDegerLogin = sessionStorage.getItem("token");
       const sessionDegerReferansno = sessionStorage.getItem("referansNo");
-      console.log(sessionDegerReferansno);
+      const sessionRoleID = sessionStorage.getItem("roleId");
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";

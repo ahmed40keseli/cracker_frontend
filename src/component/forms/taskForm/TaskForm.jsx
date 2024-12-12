@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendData } from "../../../store/slices/taskCreateSlice";
 import { getData } from "../../../store/slices/takePersonalSlice";
 import Button from "../../button/ButtonNormal";
-import Input from "../../input/InputNormal";
+import InputNormal from "../../input/InputNormal";
+import InputCheckbox from "../../input/InputCheckbox";
 
 const TaskForm = () => {
   const [title, setTitle] = useState("");
@@ -20,6 +21,7 @@ const TaskForm = () => {
   const error = useSelector((state) => state.formTaskSlice.error);
 
   const sessionDegerReferansno = sessionStorage.getItem("referansNo");
+  const sessionRoleID = sessionStorage.getItem("roleId");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +36,6 @@ const TaskForm = () => {
   }, [dispatch]);
 
   const filteredPersonList = personList.filter(
-    // (person) => person.referansNo === sessionDegerReferansno
     (person) => String(person.referansNo) === String(sessionDegerReferansno)
   );
   console.log("Filtered Person List:", filteredPersonList);
@@ -58,7 +59,7 @@ const TaskForm = () => {
       <h1>GÖREV OLUŞTURUN</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <Input
+          <InputNormal
             type="text"
             placeholder="Title"
             value={title}
@@ -66,7 +67,7 @@ const TaskForm = () => {
           />
         </div>
         <div>
-          <Input
+          <InputNormal
             type="text"
             placeholder="Görev Detayı"
             value={description}
@@ -74,9 +75,9 @@ const TaskForm = () => {
           />
         </div>
         <div>
-          <label>
+          <label className="normalCheckbox-label">
             Görev Tamamlandı mı?
-            <Input
+            <InputCheckbox
               type="checkbox"
               checked={completed}
               onChange={(e) => setCompleted(e.target.checked)}
@@ -84,7 +85,7 @@ const TaskForm = () => {
           </label>
         </div>
         <div>
-          <Input
+          <InputNormal
             type="text"
             placeholder="Görevli"
             value={assignProfile}
@@ -94,7 +95,7 @@ const TaskForm = () => {
         <div>
           <label>
             Görev Tarihi:
-            <Input
+            <InputNormal
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
@@ -104,7 +105,7 @@ const TaskForm = () => {
         <div>
           <label>
             Hatırlatma Tarihi:
-            <Input
+            <InputNormal
               type="date"
               value={reminding}
               onChange={(e) => setReminding(e.target.value)}

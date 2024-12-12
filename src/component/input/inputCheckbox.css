@@ -1,0 +1,19 @@
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .normalCheckbox[type="checkbox"] {
+    width: 350px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #007bff; 
+  }
+  
+  .normalCheckbox-label {
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+  }
+  

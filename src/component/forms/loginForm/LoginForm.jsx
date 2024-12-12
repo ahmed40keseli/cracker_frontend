@@ -25,6 +25,8 @@ function LoginForm() {
     dispatch(loginSendData(sendUserLoginData)).then(() => {});
   };
 
+  const sessionRoleID = sessionStorage.getItem("roleId");
+
   useEffect(() => {
     if (status === "succeeded") {
       navigate("/createTask");
