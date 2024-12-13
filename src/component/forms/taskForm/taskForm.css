@@ -1,0 +1,58 @@
+body{
+    margin: 0;
+    padding: 0;
+    /* background: #131034; */
+    background: #fff;
+}
+.taskCreateForm{
+    width: 350px;
+    height: 550px;
+    padding: 10px;
+    text-align: center;
+    /* background: url(C:\Users\krkks\Desktop\react-nodejs-sql\frontend\deneme3.jpg); */
+    background: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);   
+    overflow: hidden;
+}
+.taskCreateForm h1{
+    margin-top: 7px;
+    color: #fff;
+    font-size: 30px;
+}
+.taskCreateForm h2{
+    margin-top: 7px;
+    color: #fff;
+    /* font-size: px; */
+}
+.taskCreateForm h3{
+    margin-top: 7px;
+    color: #fff;
+    /* font-size: 40px; */
+}
+
+.taskCreateForm p{
+    margin-top: 10px;
+    color: #fff;
+    /* font-size: 40px; */
+}
+.taskCreateForm Input{
+    display: block;
+    width: 100%;
+    padding: 0 16px;
+    height: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    border: none;
+}
+.normalCheckbox-label{
+    display: block;
+    /* width: 100%;
+    padding: 0 16px;
+    height: 35px; */
+    text-align: center;
+    box-sizing: border-box;
+    border: none;
+}

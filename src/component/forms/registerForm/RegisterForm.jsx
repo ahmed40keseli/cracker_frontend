@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerSendData } from "../../../store/slices/registerSlice";
+import "./registerForm.css";
 import Input from "../../input/InputNormal";
 import Button from "../../button/ButtonNormal";
 import { Link } from "react-router-dom";
@@ -38,7 +39,7 @@ function RegisterForm() {
   // }, [status, navigate]);
 
   return (
-    <div>
+    <div className="registerForm">
       <h1>Kayıt Ekranı</h1>
       <form onSubmit={handleSubmit}>
         <div>

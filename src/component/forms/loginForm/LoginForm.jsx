@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginSendData } from "../../../store/slices/loginSlice";
 import Input from "../../input/InputNormal";
 import Button from "../../button/ButtonNormal";
+import "./loginForm.css";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
@@ -34,7 +35,7 @@ function LoginForm() {
   }, [status, navigate]);
 
   return (
-    <div>
+    <div className="loginForm">
       <h1>Giriş Ekranı</h1>
       <form onSubmit={handleSubmit}>
         <div>

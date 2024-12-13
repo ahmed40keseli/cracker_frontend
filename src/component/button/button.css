@@ -1,21 +1,4 @@
-/* Buton için temel stiller */
-/* .normalButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  } */
-  
-  /* .btn-normal:hover {
-    background-color: #0056b3;
-  } */
-  
-
-  .normalButton{
+/* .normalButton{
     background-color: #1899D6;
     appearance: button;
     border: solid transparent;
@@ -78,4 +61,35 @@
 .normalButton:active {
   border-width: 4px 0 0;
   background: none;
+} */
+
+.normalButton{
+  margin: 20px 0;
+  border-radius: 6px;
+}
+.normalButton{
+  margin-top: 50px;
+  margin-bottom: 20px;
+  background: #538fef;
+  color: #fff ;
+  border-radius: 44px;
+  cursor: pointer;
+  transition: 0.8s;
+  display: block;
+}
+
+.normalButton{
+  display: block;
+  width: 100%;
+  padding: 0 16px;
+  height: 44px;
+  text-align: center;
+  box-sizing: border-box;
+  border: none;
+}
+
+.normalButton:hover{
+  transform: scale(0.96);
+  background: #fff;
+  color: #538fef;
 }

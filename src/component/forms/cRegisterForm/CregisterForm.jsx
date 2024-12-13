@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cregistersendData } from "../../../store/slices/cregisterSlice"; // backend kısmı ile iletişime geçer axios ile verileri alır veya verir
+import "./cregisterForm.css";
 import { Link } from "react-router-dom"; // farklı sayfalara aktarım için link içerir
 import Input from "../../input/InputNormal"; // defult input içe aktarı mı
 import Button from "../../button/ButtonNormal"; // defult button içe aktarı mı
@@ -23,7 +24,7 @@ const CregisterForm = () => {
   };
 
   return (
-    <div>
+    <div className="CregisterForm">
       <h1>Şirket Kaydı</h1>
       <form>
         {status === "loading" && <p>Yükleniyor...</p>}

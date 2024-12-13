@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendData } from "../../../store/slices/taskCreateSlice";
 import { getData } from "../../../store/slices/takePersonalSlice";
+import "./taskForm.css";
 import Button from "../../button/ButtonNormal";
 import InputNormal from "../../input/InputNormal";
 import InputCheckbox from "../../input/InputCheckbox";
@@ -55,7 +56,7 @@ const TaskForm = () => {
   };
 
   return (
-    <div>
+    <div className="taskCreateForm">
       <h1>GÖREV OLUŞTURUN</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -76,7 +77,7 @@ const TaskForm = () => {
         </div>
         <div>
           <label className="normalCheckbox-label">
-            Görev Tamamlandı mı?
+            <p>Görev Tamamlandı mı?</p>
             <InputCheckbox
               type="checkbox"
               checked={completed}
@@ -86,7 +87,7 @@ const TaskForm = () => {
         </div>
         <div>
           <label>
-            Görevli Seçin:
+            <p>Görevli Seçin:</p>
             <select
               value={assignProfile}
               onChange={(e) => setAssignProfile(e.target.value)}
@@ -112,7 +113,7 @@ const TaskForm = () => {
         </div> */}
         <div>
           <label>
-            Görev Tarihi:
+            <p>Görev Tarihi:</p>
             <InputNormal
               type="date"
               value={date}
@@ -122,7 +123,7 @@ const TaskForm = () => {
         </div>
         <div>
           <label>
-            Hatırlatma Tarihi:
+            <p>Hatırlatma Tarihi:</p>
             <InputNormal
               type="date"
               value={reminding}

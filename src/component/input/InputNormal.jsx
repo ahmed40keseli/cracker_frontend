@@ -3,7 +3,7 @@ import "../input/inputNormal.css";
 
 const InputField = ({ type, value, onChange, placeholder }) => {
   return (
-    <div>
+    <div className="ınputNormalButtonForm">
       <input
         type={type}
         value={value}
