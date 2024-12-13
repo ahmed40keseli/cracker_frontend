@@ -16,6 +16,21 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //     const verification = async () => {
+  //       try {
+  //         if (sessionRoleID == 3){
+
+  //         }
+  //         // const action = await dispatch(getData());
+  //         // setPersonList(action.payload.newArray || []);
+  //       } catch (error) {
+  //         console.error("Error:", error);
+  //       }
+  //     };
+  //     verification();
+  //   }, [dispatch]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const sendUserLoginData = {

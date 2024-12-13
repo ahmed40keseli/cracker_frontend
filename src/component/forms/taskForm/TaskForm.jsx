@@ -39,8 +39,6 @@ const TaskForm = () => {
   const filteredPersonList = personList.filter(
     (person) => String(person.referansNo) === String(sessionDegerReferansno)
   );
-  console.log("Filtered Person List:", filteredPersonList);
-  console.log("Person List:", personList);
 
   const handleSubmit = (e) => {
     e.preventDefault();
