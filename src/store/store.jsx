@@ -5,6 +5,7 @@ import formGetSlice from "./slices/takePersonalSlice";
 import formRegisterSlice from "./slices/registerSlice";
 import formCregisterSlice from "./slices/cregisterSlice";
 import formLoginSlice from "./slices/loginSlice";
+import formSelfTaskSlice from "./slices/getTaskSlice";
 // slice dosyalarının içe aktarımı
 
 export const store = configureStore({
@@ -21,5 +22,6 @@ export const store = configureStore({
     // normal kayıt eden slice dosyasının aktarımı için
     formCregisterSlice: formCregisterSlice,
     // şirket kayıt eden slice dosyasının aktarımı için
+    formSelfTaskSlice: formSelfTaskSlice,
   },
 });

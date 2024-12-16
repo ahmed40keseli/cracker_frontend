@@ -1,33 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sendData } from "../../../store/slices/taskCreateSlice";
-import { getData } from "../../../store/slices/takePersonalSlice";
-import "./taskForm.css";
+
+import "./selfTaskForm.css";
 import Button from "../../button/ButtonNormal";
 import InputNormal from "../../input/InputNormal";
 import InputCheckbox from "../../input/InputCheckbox";
 
-const TaskForm = () => {
+const SelfTaskForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
   const [assignProfile, setAssignProfile] = useState("");
   const [date, setDate] = useState("");
   const [reminding, setReminding] = useState("");
-  const [personList, setPersonList] = useState([]);
 
   const dispatch = useDispatch();
 
-  const status = useSelector((state) => state.formTaskSlice.status);
-  const error = useSelector((state) => state.formTaskSlice.error);
-
-  const sessionDegerReferansno = sessionStorage.getItem("referansNo");
-  const sessionRoleID = sessionStorage.getItem("roleId");
+  const status = useSelector((state) => state.formSelfTaskSlice.status);
+  const error = useSelector((state) => state.formSelfTaskSlice.error);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const action = await dispatch(getData());
+        const action = await dispatch(getdata());
         setPersonList(action.payload.newArray || []);
       } catch (error) {
         console.error("Error:", error);
@@ -35,10 +30,6 @@ const TaskForm = () => {
     };
     fetchData();
   }, [dispatch]);
-
-  const filteredPersonList = personList.filter(
-    (person) => String(person.referansNo) === String(sessionDegerReferansno)
-  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
