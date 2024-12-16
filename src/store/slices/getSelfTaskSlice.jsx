@@ -2,10 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../api's/api";
 
 export const getIdTaskData = createAsyncThunk(
-  "tasks/getData",
+  "tasks/getIdData",
   async (_, thunkAPI) => {
     try {
-      const response = await API.get("/getAuth/{id}");
+      const response = await API.get(`getTasks/${sessionUserId}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -14,6 +14,8 @@ export const getIdTaskData = createAsyncThunk(
     }
   }
 );
+
+const sessionUserId = sessionStorage.getItem("userId");
 
 const formGetSlice = createSlice({
   name: "form",
@@ -25,15 +27,15 @@ const formGetSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getData.pending, (state) => {
+      .addCase(getIdTaskData.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(getData.fulfilled, (state, action) => {
+      .addCase(getIdTaskData.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.tasks = Array.isArray(action.payload) ? action.payload : [];
         state.error = null;
       })
-      .addCase(getData.rejected, (state, action) => {
+      .addCase(getIdTaskData.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       });

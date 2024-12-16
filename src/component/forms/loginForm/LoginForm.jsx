@@ -16,21 +16,6 @@ function LoginForm() {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //     const verification = async () => {
-  //       try {
-  //         if (sessionRoleID == 3){
-
-  //         }
-  //         // const action = await dispatch(getData());
-  //         // setPersonList(action.payload.newArray || []);
-  //       } catch (error) {
-  //         console.error("Error:", error);
-  //       }
-  //     };
-  //     verification();
-  //   }, [dispatch]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const sendUserLoginData = {
@@ -42,12 +27,18 @@ function LoginForm() {
   };
 
   const sessionRoleID = sessionStorage.getItem("roleId");
+  const sessionUserId = sessionStorage.getItem("userId");
+  // console.log(sessionUserId);
 
   useEffect(() => {
     if (status === "succeeded") {
-      navigate("/createTask");
+      if (sessionRoleID === "1" || sessionRoleID === "2") {
+        navigate("/createTask");
+      } else if (sessionRoleID === "3") {
+        navigate(`/getTasks/${sessionUserId}`);
+      }
     }
-  }, [status, navigate]);
+  }, [status, navigate, sessionRoleID, sessionUserId]);
 
   return (
     <div className="loginForm">

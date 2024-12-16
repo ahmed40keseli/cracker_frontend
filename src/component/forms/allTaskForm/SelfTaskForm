@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { getIdTaskData } from "../../../store/slices/getSelfTaskSlice";
 import "./selfTaskForm.css";
 import Button from "../../button/ButtonNormal";
 import InputNormal from "../../input/InputNormal";
@@ -22,7 +22,7 @@ const SelfTaskForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const action = await dispatch(getdata());
+        const action = await dispatch(getIdTaskData());
         setPersonList(action.payload.newArray || []);
       } catch (error) {
         console.error("Error:", error);
@@ -31,21 +31,8 @@ const SelfTaskForm = () => {
     fetchData();
   }, [dispatch]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = {
-      title,
-      completed,
-      description,
-      assignProfile,
-      endDate: date,
-      reminderDate: reminding,
-    };
-    dispatch(sendData(formData));
-  };
-
   return (
-    <div className="taskCreateForm">
+    <div className="SelfTaskForm">
       <h1>GÖREV OLUŞTURUN</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -125,4 +112,4 @@ const SelfTaskForm = () => {
   );
 };
 
-export default TaskForm;
+export default SelfTaskForm;
