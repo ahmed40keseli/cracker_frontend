@@ -5,7 +5,7 @@ export const getIdTaskData = createAsyncThunk(
   "tasks/getIdData",
   async (_, thunkAPI) => {
     try {
-      const response = await API.get(`getTasks/${sessionUserId}`);
+      const response = await API.get(`getTasks`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -14,8 +14,6 @@ export const getIdTaskData = createAsyncThunk(
     }
   }
 );
-
-const sessionUserId = sessionStorage.getItem("userId");
 
 const formGetSlice = createSlice({
   name: "form",
