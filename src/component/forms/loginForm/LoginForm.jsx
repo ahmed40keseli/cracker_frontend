@@ -35,7 +35,7 @@ function LoginForm() {
       if (sessionRoleID === "1" || sessionRoleID === "2") {
         navigate("/createTask");
       } else if (sessionRoleID === "3") {
-        navigate(`/getTasks/${sessionUserId}`);
+        navigate(`/getTasks`);
       }
     }
   }, [status, navigate, sessionRoleID, sessionUserId]);

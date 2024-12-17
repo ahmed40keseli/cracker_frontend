@@ -2,10 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../api's/api";
 
 export const getIdTaskData = createAsyncThunk(
-  "tasks/getIdData",
+  "tasks/getIdTaskData",
   async (_, thunkAPI) => {
     try {
-      const response = await API.get(`getTasks`);
+      const response = await API.post("/getTasks");
+      console.log("response.data", response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
