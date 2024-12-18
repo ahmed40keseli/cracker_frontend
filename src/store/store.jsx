@@ -21,5 +21,6 @@ export const store = configureStore({
     formCregisterSlice: formCregisterSlice,
     // şirket kayıt eden slice dosyasının aktarımı için
     formSelfTaskSlice: formSelfTaskSlice,
+    // kişisel tablo getiren slice aktarımı için
   },
 });
