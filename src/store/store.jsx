@@ -10,8 +10,6 @@ import formSelfTaskSlice from "./slices/getSelfTaskSlice";
 
 export const store = configureStore({
   reducer: {
-    // userSlice: userReducer,
-
     formTaskSlice: formTaskSlice,
     // görev oluşturan slice dosyasının aktarımı için
     personalSlice: formGetSlice,

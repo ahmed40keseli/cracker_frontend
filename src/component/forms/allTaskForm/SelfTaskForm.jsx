@@ -2,76 +2,53 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getIdTaskData } from "../../../store/slices/getSelfTaskSlice";
 import "./selfTaskForm.css";
-import Button from "../../button/ButtonNormal";
-import InputNormal from "../../input/InputNormal";
-import InputCheckbox from "../../input/InputCheckbox";
 
 const SelfTaskForm = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [completed, setCompleted] = useState(false);
-  const [assignProfile, setAssignProfile] = useState("");
-  const [date, setDate] = useState("");
-  const [reminding, setReminding] = useState("");
-
   const dispatch = useDispatch();
 
+  const tasks = useSelector((state) => state.formSelfTaskSlice.tasks || []);
   const status = useSelector((state) => state.formSelfTaskSlice.status);
   const error = useSelector((state) => state.formSelfTaskSlice.error);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const action = await dispatch(getIdTaskData());
-        setPersonList(action.payload.newArray || []);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-    fetchData();
+    dispatch(getIdTaskData());
   }, [dispatch]);
 
   return (
     <div className="SelfTaskForm">
-      <h1>A Table</h1>
-      <table id="customers">
-        <tr>
-          <th>title</th>
-          <th>description</th>
-          <th>completed</th>
-          <th>assignProfile</th>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-      </table>
+      <h1>Task Table</h1>
+      {status === "loading" && <p>Loading...</p>}
+      {status === "failed" && <p>Error: {error}</p>}
+      {status === "succeeded" && tasks.length === 0 && (
+        <p>No tasks available.</p>
+      )}
+
+      {status === "succeeded" && tasks.length > 0 && (
+        <table id="customers">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Completed</th>
+              <th>Assign Profile</th>
+              <th>End Date</th>
+              <th>Reminder Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tasks.map((task) => (
+              <tr key={task.taskId}>
+                <td>{task.title}</td>
+                <td>{task.description}</td>
+                <td>{task.completed ? "Yes" : "No"}</td>
+                <td>{task.assignProfile}</td>
+                <td>{task.endDate}</td>
+                <td>{task.reminderDate}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
