@@ -6,13 +6,11 @@ export const getIdTaskData = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const token = sessionStorage.getItem("token");
-      console.log("token", token);
       const response = await API.post("/getTasks", formData, {
         headers: {
           token: `${token}`,
         },
       });
-      console.log("API Yanıtı:", response.data);
       return response.data;
     } catch (error) {
       console.log("Error oluştu:", error.message);

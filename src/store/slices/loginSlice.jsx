@@ -7,15 +7,6 @@ export const loginSendData = createAsyncThunk(
     try {
       const response = await API.post("/login", loginData);
       console.log(response.data);
-
-      sessionStorage.setItem("token", response.data.token);
-      sessionStorage.setItem("referansNo", response.data.user.referansNo);
-      sessionStorage.setItem("roleId", response.data.user.roleId);
-      sessionStorage.setItem("userId", response.data.user.userId);
-      // const sessionDegerLogin = sessionStorage.getItem("token");
-      // const sessionDegerReferansno = sessionStorage.getItem("referansNo");
-      // const sessionRoleID = sessionStorage.getItem("roleId");
-      const sessionUserId = sessionStorage.getItem("userId");
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
@@ -29,6 +20,7 @@ const formLoginSlice = createSlice({
   initialState: {
     status: "idle",
     error: null,
+    token: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -36,9 +28,10 @@ const formLoginSlice = createSlice({
       .addCase(loginSendData.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(loginSendData.fulfilled, (state) => {
+      .addCase(loginSendData.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.error = null;
+        state.token = action.payload.token;
       })
       .addCase(loginSendData.rejected, (state, action) => {
         state.status = "failed";
