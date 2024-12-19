@@ -5,7 +5,7 @@ import "./registerForm.css";
 import Input from "../../input/InputNormal";
 import Button from "../../button/ButtonNormal";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function RegisterForm() {
   const [email, setEmail] = useState("");
@@ -14,10 +14,9 @@ function RegisterForm() {
   const [referansNo, setReferansno] = useState("");
 
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.formRegisterSlice.status);
-  const error = useSelector((state) => state.formRegisterSlice.error);
+  const { status, error } = useSelector((state) => state.formRegisterSlice);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,16 +26,15 @@ function RegisterForm() {
       user_password,
       referansNo,
     };
-    console.log(userData);
 
     dispatch(registerSendData(userData));
   };
 
-  // useEffect(() => {
-  //   if (status === "succeeded") {
-  //     navigate("/login");
-  //   }
-  // }, [status, navigate]);
+  useEffect(() => {
+    if (status === "succeeded") {
+      navigate("/login");
+    }
+  }, [status, navigate]);
 
   return (
     <div className="registerForm">
