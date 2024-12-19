@@ -6,7 +6,7 @@ export const loginSendData = createAsyncThunk(
   async (loginData, thunkAPI) => {
     try {
       const response = await API.post("/login", loginData);
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";

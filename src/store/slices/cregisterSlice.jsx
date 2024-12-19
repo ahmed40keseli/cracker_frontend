@@ -6,11 +6,11 @@ export const cregistersendData = createAsyncThunk(
   async (cregisterData, thunkAPI) => {
     try {
       const response = await API.post("/Cregister", cregisterData);
-      const sessionDegerCregister = sessionStorage.setItem(
-        "token",
-        response.data.token
-      );
-      console.log(sessionDegerCregister);
+      // const sessionDegerCregister = sessionStorage.setItem(
+      //   "token",
+      //   response.data.token
+      // );
+      // console.log(sessionDegerCregister);
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
@@ -24,6 +24,7 @@ const formCregisterSlice = createSlice({
   initialState: {
     status: "idle",
     error: null,
+    token: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -31,9 +32,10 @@ const formCregisterSlice = createSlice({
       .addCase(cregistersendData.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(cregistersendData.fulfilled, (state) => {
+      .addCase(cregistersendData.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.error = null;
+        state.token = action.payload.token;
       })
       .addCase(cregistersendData.rejected, (state, action) => {
         state.status = "failed";

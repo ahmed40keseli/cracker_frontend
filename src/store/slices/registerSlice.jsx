@@ -6,12 +6,12 @@ export const registerSendData = createAsyncThunk(
   async (registerData, thunkAPI) => {
     try {
       const response = await API.post("/register", registerData);
-      sessionStorage.setItem("token", response.data.token);
-      const sessionDegerRegister = sessionStorage.getItem(
-        "token",
-        response.data.token
-      );
-      console.log("sessionDegerRegister", sessionDegerRegister);
+      // sessionStorage.setItem("token", response.data.token);
+      // const sessionDegerRegister = sessionStorage.getItem(
+      //   "token",
+      //   response.data.token
+      // );
+      // console.log("sessionDegerRegister", sessionDegerRegister);
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
@@ -25,6 +25,7 @@ const formRegisterSlice = createSlice({
   initialState: {
     status: "idle",
     error: null,
+    token: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -32,9 +33,10 @@ const formRegisterSlice = createSlice({
       .addCase(registerSendData.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(registerSendData.fulfilled, (state) => {
+      .addCase(registerSendData.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.error = null;
+        state.token = action.payload.token;
       })
       .addCase(registerSendData.rejected, (state, action) => {
         state.status = "failed";
