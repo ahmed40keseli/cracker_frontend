@@ -1,11 +1,11 @@
-// import SelfTaskForm from "../../component/forms/allTaskForm/SelfTaskForm";
+import SelfTaskForm from "../../component/forms/allTaskForm/SelfTaskForm";
 
-// function SelfTaskPage() {
-//   return (
-//     <div>
-//       <SelfTaskForm />
-//     </div>
-//   );
-// }
+function SelfTaskPage() {
+  return (
+    <div>
+      <SelfTaskForm />
+    </div>
+  );
+}
 
-// export default SelfTaskPage;
+export default SelfTaskPage;
