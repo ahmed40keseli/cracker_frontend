@@ -2,22 +2,26 @@
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cregistersendData } from "../../../store/slices/cregisterSlice"; // backend kısmı ile iletişime geçer axios ile verileri alır veya verir
+import { cregistersendData } from "../../../store/slices/cregisterSlice";
+// backend kısmı ile iletişime geçer axios ile verileri alır veya verir
 import "./cregisterForm.css";
-import { Link } from "react-router-dom"; // farklı sayfalara aktarım için link içerir
-import Input from "../../input/InputNormal"; // defult input içe aktarı mı
-import Button from "../../button/ButtonNormal"; // defult button içe aktarı mı
+// import { jwtDecode } from "jwt-decode";
+import { Link } from "react-router-dom";
+// farklı sayfalara aktarım için link içerir
+import Input from "../../input/InputNormal";
+// defult input içe aktarı mı
+import Button from "../../button/ButtonNormal";
+// defult button içe aktarı mı
 
 const CregisterForm = () => {
   const [referansNo, setreferansNo] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [user_password, setPassword] = useState(""); // ilk başta bu değerlerin içi boş olarak alınır
+  const [user_password, setPassword] = useState("");
+  // ilk başta bu değerlerin içi boş olarak alınır
 
-  // const { status, user, error } = useSelector((state) => state.user);
-  const status = useSelector((state) => state.formCregisterSlice.status);
-  const error = useSelector((state) => state.formCregisterSlice.error);
   const dispatch = useDispatch();
+  const { status, error } = useSelector((state) => state.formCregisterSlice);
 
   const handleRegisterCompany = () => {
     dispatch(cregistersendData({ referansNo, email, username, user_password }));
