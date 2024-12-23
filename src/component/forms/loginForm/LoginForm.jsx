@@ -12,7 +12,10 @@ function LoginForm() {
   const [user_password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const { status, error, token } = useSelector((state) => state.formLoginSlice);
+  const { status, error } = useSelector(
+    // const { status, error, authorization } = useSelector(
+    (state) => state.formLoginSlice
+  );
 
   const navigate = useNavigate();
 
@@ -26,21 +29,41 @@ function LoginForm() {
   };
 
   useEffect(() => {
-    if (status === "succeeded" && token) {
+    if (status === "succeeded") {
       try {
-        const decodedToken = jwtDecode(token);
-        const roleId = decodedToken.roleId;
+        const token = sessionStorage.getItem("authorization");
+        if (token) {
+          const decodedToken = jwtDecode(token);
+          const roleId = decodedToken.roleId;
 
-        if (roleId === 1 || roleId === 2) {
-          navigate("/createTask");
-        } else if (roleId === 3) {
-          navigate("/getTasks");
+          if (roleId === 1 || roleId === 2) {
+            navigate("/createTask");
+          } else if (roleId === 3) {
+            navigate("/getTasks");
+          }
         }
       } catch (decodeError) {
         console.error("Token decode hatası:", decodeError);
       }
     }
-  }, [status, token, navigate]);
+  }, [status, navigate]);
+
+  // useEffect(() => {
+  //   if (status === "succeeded" && authorization) {
+  //     try {
+  //       const decodedToken = jwtDecode(authorization);
+  //       const roleId = decodedToken.roleId;
+
+  //       if (roleId === 1 || roleId === 2) {
+  //         navigate("/createTask");
+  //       } else if (roleId === 3) {
+  //         navigate("/getTasks");
+  //       }
+  //     } catch (decodeError) {
+  //       console.error("authorization decode hatası:", decodeError);
+  //     }
+  //   }
+  // }, [status, authorization, navigate]);
 
   return (
     <div className="loginForm">

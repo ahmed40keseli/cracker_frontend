@@ -5,8 +5,9 @@ export const getIdTaskData = createAsyncThunk(
   "form/getIdTaskData",
   async (thunkAPI) => {
     try {
-      const token = sessionStorage.getItem("token");
-      console.log("token", token);
+      const tokenData = sessionStorage.getItem("authorization");
+      // console.log(sessionStorage.getItem("authorization"));
+
       // const response = await API.get("/getTasks", formData, {
       //   headers: {
       //     token: `${token}`,
@@ -14,7 +15,7 @@ export const getIdTaskData = createAsyncThunk(
       // });
       const response = await API.get("/getTasks", {
         headers: {
-          token: `${token}`,
+          authorization: `Bearer ${tokenData}`,
           "Content-Type": "application/json",
         },
       });
