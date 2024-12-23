@@ -6,7 +6,10 @@ export const registerSendData = createAsyncThunk(
   async (registerData, thunkAPI) => {
     try {
       const response = await API.post("/register", registerData);
-      sessionStorage.setItem("token", JSON.stringify(response.data.token));
+      sessionStorage.setItem(
+        "authorization",
+        JSON.stringify(response.data.authorization)
+      );
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
@@ -20,7 +23,7 @@ const formRegisterSlice = createSlice({
   initialState: {
     status: "idle",
     error: null,
-    token: null,
+    authorization: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -31,7 +34,7 @@ const formRegisterSlice = createSlice({
       .addCase(registerSendData.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.error = null;
-        state.token = action.payload.token;
+        // state.authorization = action.payload.authorization;
       })
       .addCase(registerSendData.rejected, (state, action) => {
         state.status = "failed";

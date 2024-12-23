@@ -5,11 +5,11 @@ export const sendData = createAsyncThunk(
   "form/sendData",
   async (formData, thunkAPI) => {
     try {
-      const token = sessionStorage.getItem("token");
-      console.log("Token alındı:", token);
+      const tokenData = sessionStorage.getItem("authorization");
+      console.log("Token alındı:", tokenData);
       const response = await API.post("/createTask", formData, {
         headers: {
-          token: `${token}`,
+          authorization: Bearer`${tokenData}`,
         },
       });
       console.log("API Yanıtı:", response.data);
