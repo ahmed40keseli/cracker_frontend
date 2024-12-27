@@ -10,16 +10,16 @@ export const loginSendData = createAsyncThunk(
 
       const authToken = response.headers.authorization;
 
-      if (authToken) {
-        sessionStorage.setItem("authorization", authToken);
-        // Token'i sessionStorage'a kaydet
-        console.log("başarılı");
-
-        return authToken;
-        // Token'i geri döndür
-      } else {
-        throw new Error("Authorization header bulunamadı");
+      if (!authToken) {
+        throw new Error("Token bulunamadı");
       }
+
+      sessionStorage.setItem("authorization", authToken);
+
+      return {
+        token: authToken,
+        success: true,
+      };
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
       return thunkAPI.rejectWithValue({ message: errorMessage });
@@ -32,6 +32,7 @@ const formLoginSlice = createSlice({
   initialState: {
     status: "idle",
     error: null,
+    isAuthenticated: false,
     // authorization: null,
   },
   reducers: {},
@@ -45,6 +46,7 @@ const formLoginSlice = createSlice({
         state.status = "succeeded";
         // başarı ile gerçekleştiğinde state'i güncelleme işlemi
         state.error = null;
+        state.isAuthenticated = true;
         // state.authorization = action.payload.authToken;
         // action ile diğer componente gönderilir
       })
@@ -56,4 +58,34 @@ const formLoginSlice = createSlice({
 });
 
 export default formLoginSlice.reducer;
-// dışarıya paylaşma için kullanılır
+
+// const formLoginSlice = createSlice({
+//   name: "form",
+//   initialState: {
+//     status: "idle",
+//     error: null,
+//     // authorization: null,
+//   },
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(loginSendData.pending, (state) => {
+//         state.status = "loading";
+//         // yüklenirken oluşacak durumlar
+//       })
+//       .addCase(loginSendData.fulfilled, (state, action) => {
+//         state.status = "succeeded";
+//         // başarı ile gerçekleştiğinde state'i güncelleme işlemi
+//         state.error = null;
+//         // state.authorization = action.payload.authToken;
+//         // action ile diğer componente gönderilir
+//       })
+//       .addCase(loginSendData.rejected, (state, action) => {
+//         state.status = "failed";
+//         state.error = action.payload;
+//       });
+//   },
+// });
+
+// export default formLoginSlice.reducer;
+// // dışarıya paylaşma için kullanılır

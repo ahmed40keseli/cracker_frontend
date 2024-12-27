@@ -12,10 +12,7 @@ function LoginForm() {
   const [user_password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const { status, error } = useSelector(
-    // const { status, error, authorization } = useSelector(
-    (state) => state.formLoginSlice
-  );
+  const { status, error } = useSelector((state) => state.formLoginSlice);
 
   const navigate = useNavigate();
 
@@ -47,23 +44,6 @@ function LoginForm() {
       }
     }
   }, [status, navigate]);
-
-  // useEffect(() => {
-  //   if (status === "succeeded" && authorization) {
-  //     try {
-  //       const decodedToken = jwtDecode(authorization);
-  //       const roleId = decodedToken.roleId;
-
-  //       if (roleId === 1 || roleId === 2) {
-  //         navigate("/createTask");
-  //       } else if (roleId === 3) {
-  //         navigate("/getTasks");
-  //       }
-  //     } catch (decodeError) {
-  //       console.error("authorization decode hatası:", decodeError);
-  //     }
-  //   }
-  // }, [status, authorization, navigate]);
 
   return (
     <div className="loginForm">

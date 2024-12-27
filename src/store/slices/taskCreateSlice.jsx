@@ -9,7 +9,8 @@ export const sendData = createAsyncThunk(
       console.log("Token alındı:", tokenData);
       const response = await API.post("/createTask", formData, {
         headers: {
-          authorization: Bearer`${tokenData}`,
+          // authorization: Bearer`${tokenData}`,
+          authorization: tokenData,
         },
       });
       console.log("API Yanıtı:", response.data);

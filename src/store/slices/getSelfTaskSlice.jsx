@@ -15,7 +15,8 @@ export const getIdTaskData = createAsyncThunk(
       // });
       const response = await API.get("/getTasks", {
         headers: {
-          authorization: `Bearer ${tokenData}`,
+          // authorization: `Bearer ${tokenData}`,
+          authorization: tokenData,
           "Content-Type": "application/json",
         },
       });
