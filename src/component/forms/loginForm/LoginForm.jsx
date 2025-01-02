@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSendData } from "../../../store/slices/loginSlice";
 import { jwtDecode } from "jwt-decode";
-import Input from "../../input/InputNormal";
-import Button from "../../button/ButtonNormal";
+import Input from "../../common/input/InputNormal";
+import Button from "../../common/button/ButtonNormal";
 import "./loginForm.css";
 import { useNavigate } from "react-router-dom";
 

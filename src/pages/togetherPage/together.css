@@ -1,0 +1,38 @@
+.combined-task-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .task-form-section {
+    flex: 0 0 400px; /* Fixed width for the form */
+    order: 1; /* Places it on the left */
+  }
+  
+  .task-list-section {
+    flex: 1; /* Takes remaining space */
+    order: 2; /* Places it on the right */
+    min-width: 600px;
+  }
+  
+  /* Table styles to ensure proper width */
+  .task-list-section table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .combined-task-container {
+      flex-direction: column;
+    }
+  
+    .task-form-section,
+    .task-list-section {
+      width: 100%;
+      min-width: unset;
+      order: unset;
+    }
+  }

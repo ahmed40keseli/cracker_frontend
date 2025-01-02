@@ -33,7 +33,6 @@ const formLoginSlice = createSlice({
     status: "idle",
     error: null,
     isAuthenticated: false,
-    // authorization: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -47,7 +46,6 @@ const formLoginSlice = createSlice({
         // başarı ile gerçekleştiğinde state'i güncelleme işlemi
         state.error = null;
         state.isAuthenticated = true;
-        // state.authorization = action.payload.authToken;
         // action ile diğer componente gönderilir
       })
       .addCase(loginSendData.rejected, (state, action) => {
@@ -58,34 +56,3 @@ const formLoginSlice = createSlice({
 });
 
 export default formLoginSlice.reducer;
-
-// const formLoginSlice = createSlice({
-//   name: "form",
-//   initialState: {
-//     status: "idle",
-//     error: null,
-//     // authorization: null,
-//   },
-//   reducers: {},
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(loginSendData.pending, (state) => {
-//         state.status = "loading";
-//         // yüklenirken oluşacak durumlar
-//       })
-//       .addCase(loginSendData.fulfilled, (state, action) => {
-//         state.status = "succeeded";
-//         // başarı ile gerçekleştiğinde state'i güncelleme işlemi
-//         state.error = null;
-//         // state.authorization = action.payload.authToken;
-//         // action ile diğer componente gönderilir
-//       })
-//       .addCase(loginSendData.rejected, (state, action) => {
-//         state.status = "failed";
-//         state.error = action.payload;
-//       });
-//   },
-// });
-
-// export default formLoginSlice.reducer;
-// // dışarıya paylaşma için kullanılır
