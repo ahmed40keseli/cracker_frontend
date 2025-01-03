@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendData } from "../../../store/slices/taskCreateSlice";
 import { getData } from "../../../store/slices/takePersonalSlice";
 import "./taskForm.css";
-import Button from "../../button/ButtonNormal";
-import InputNormal from "../../input/InputNormal";
-import InputCheckbox from "../../input/InputCheckbox";
+import Button from "../../common/button/ButtonNormal";
+import InputNormal from "../../common/input/InputNormal";
+import InputCheckbox from "../../common/input/InputCheckbox";
 
 const TaskForm = () => {
   const [title, setTitle] = useState("");

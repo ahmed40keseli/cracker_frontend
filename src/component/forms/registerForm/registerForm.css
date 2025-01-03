@@ -4,7 +4,7 @@ body{
     /* background: #131034; */
     background: #fff;
 }
-.registerForm{
+.form-container {
     width: 350px;
     height: 550px;
     padding: 15px;
@@ -16,25 +16,27 @@ body{
     left: 50%;
     transform: translate(-50%,-50%);   
     overflow: hidden;
+    border-radius: 15px;
+
 }
 
-.registerForm h1{
+.form-container h1{
     margin-top: 50px;
     color: #fff;
     font-size: 40px;
 }
-.registerForm h2{
+.form-container h2{
     margin-top: 10px;
     color: #fff;
     /* font-size: px; */
 }
-.registerForm h3{
+.form-container h3{
     margin-top: 10px;
     color: #fff;
     /* font-size: 40px; */
 }
 
-.registerForm Input{
+.form-container Input{
     display: block;
     width: 100%;
     padding: 0 16px;

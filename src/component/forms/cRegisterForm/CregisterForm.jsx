@@ -8,9 +8,9 @@ import "./cregisterForm.css";
 // import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router-dom";
 // farklı sayfalara aktarım için link içerir
-import Input from "../../input/InputNormal";
+import Input from "../../common/input/InputNormal";
 // defult input içe aktarı mı
-import Button from "../../button/ButtonNormal";
+import Button from "../../common/button/ButtonNormal";
 // defult button içe aktarı mı
 
 const CregisterForm = () => {
@@ -28,9 +28,9 @@ const CregisterForm = () => {
   };
 
   return (
-    <div className="CregisterForm">
+    <div className="form-container">
       <h1>Şirket Kaydı</h1>
-      <form>
+      <form id="registerForm">
         {status === "loading" && <p>Yükleniyor...</p>}
         {error && <p style={{ color: "red" }}>{JSON.stringify(error)}</p>}
         <Input
@@ -39,7 +39,7 @@ const CregisterForm = () => {
           onChange={(e) => setreferansNo(e.target.value)}
           placeholder="Şirket Kodu"
         ></Input>
-        <div>
+        <div className="form-group">
           <Input
             type="name"
             placeholder="name"
@@ -55,12 +55,14 @@ const CregisterForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-posta"
         ></Input>
-        <Input
-          type="password"
-          value={user_password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Şifre"
-        ></Input>
+        <div className="form-group">
+          <Input
+            type="password"
+            value={user_password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Şifre"
+          ></Input>
+        </div>
         <Button onClick={handleRegisterCompany}>Şirket Kaydı Yap</Button>
         {error && <p style={{ color: "red" }}>{JSON.stringify(error)}</p>}
         <p>

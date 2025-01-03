@@ -46,10 +46,10 @@ function LoginForm() {
   }, [status, navigate]);
 
   return (
-    <div className="loginForm">
+    <div className="form-container">
       <h1>Giriş Ekranı</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form id="registerForm" onSubmit={handleSubmit}>
+        <div className="form-group">
           <Input
             type="email"
             placeholder="Email"
@@ -58,7 +58,7 @@ function LoginForm() {
             required
           ></Input>
         </div>
-        <div>
+        <div className="form-group">
           <Input
             type="password"
             placeholder="Password"

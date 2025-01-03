@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerSendData } from "../../../store/slices/registerSlice";
 import "./registerForm.css";
-import Input from "../../input/InputNormal";
-import Button from "../../button/ButtonNormal";
+import Input from "../../common/input/InputNormal";
+import Button from "../../common/button/ButtonNormal";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -37,10 +37,10 @@ function RegisterForm() {
   }, [status, navigate]);
 
   return (
-    <div className="registerForm">
+    <div className="form-container">
       <h1>Kayıt Ekranı</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form id="registerForm" onSubmit={handleSubmit}>
+        <div className="form-group">
           <Input
             type="email"
             placeholder="Email"
@@ -49,7 +49,7 @@ function RegisterForm() {
             required
           ></Input>
         </div>
-        <div>
+        <div className="form-group">
           <Input
             type="name"
             placeholder="name"
@@ -58,7 +58,7 @@ function RegisterForm() {
             required
           ></Input>
         </div>
-        <div>
+        <div className="form-group">
           <Input
             type="referansNo"
             placeholder="referansNo"
@@ -67,7 +67,7 @@ function RegisterForm() {
             required
           ></Input>
         </div>
-        <div>
+        <div className="form-group">
           <Input
             type="password"
             placeholder="Password"
@@ -95,3 +95,63 @@ function RegisterForm() {
 }
 
 export default RegisterForm;
+
+//   return (
+//     <div className="registerForm">
+//       <h1>Kayıt Ekranı</h1>
+//       <form onSubmit={handleSubmit}>
+//         <div>
+//           <Input
+//             type="email"
+//             placeholder="Email"
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             required
+//           ></Input>
+//         </div>
+//         <div>
+//           <Input
+//             type="name"
+//             placeholder="name"
+//             value={username}
+//             onChange={(e) => setUsername(e.target.value)}
+//             required
+//           ></Input>
+//         </div>
+//         <div>
+//           <Input
+//             type="referansNo"
+//             placeholder="referansNo"
+//             value={referansNo}
+//             onChange={(e) => setReferansno(e.target.value)}
+//             required
+//           ></Input>
+//         </div>
+//         <div>
+//           <Input
+//             type="password"
+//             placeholder="Password"
+//             value={user_password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             required
+//           ></Input>
+//         </div>
+//         <Button type="submit">Kayıt Ol</Button>
+//         {error && <p style={{ color: "red" }}>{JSON.stringify(error)}</p>}
+//         <h2>
+//           Kayıt Olduysanız <Link to="/login">Giriş Yap</Link>
+//         </h2>
+//         <h3>
+//           Şirket Kaydı için <Link to="/Cregister">tıklayın</Link>
+//         </h3>
+//       </form>
+//       {status === "loading" && <p>Yükleniyor...</p>}
+//       {status === "succeeded" && <p>Veri başarıyla gönderildi!</p>}
+//       {status === "failed" && (
+//         <p>Hata: {error?.message || "Bir hata oluştu."}</p>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default RegisterForm;

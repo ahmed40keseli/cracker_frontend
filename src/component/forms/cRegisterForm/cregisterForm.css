@@ -16,6 +16,7 @@ body{
     left: 50%;
     transform: translate(-50%,-50%);   
     overflow: hidden;
+    border-radius: 15px;
 }
 .CregisterForm h1{
     margin-top: 50px;
