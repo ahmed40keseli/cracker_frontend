@@ -10,6 +10,7 @@ export const registerSendData = createAsyncThunk(
         "authorization",
         JSON.stringify(response.data.authorization)
       );
+      console.log("response sliceeee", response);
       return response.data;
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Bir hata oluştu";
